@@ -1,0 +1,10 @@
+import { getWeather, processResponse } from "./getWeather.js";
+
+const initialLoad = () => {
+    const res = getWeather("mumbai");
+    processResponse(res).then((data)=>{
+        console.log(data[0],data[1]);
+    })
+};
+
+export default initialLoad;
