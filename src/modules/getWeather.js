@@ -1,4 +1,6 @@
-async function getWeather(location) {
+let weatherData;
+
+async function getWeather(location = "india") {
     const key = "9c9c5eb6675b4410b8284618230512";
     const response = await fetch(
         `https://api.weatherapi.com/v1/current.json?key=${key}&q=${location}&aqi=yes`
@@ -8,12 +10,9 @@ async function getWeather(location) {
 
 async function processResponse(response) {
     const responseJSON = await response.then((data) => data.json());
-    // console.log(
-    //     responseJSON.location.name,
-    //     " = ",
-    //     responseJSON.current.condition.text
-    // );
-    return [responseJSON.location.name, responseJSON.current.condition.text];
+    weatherData = responseJSON;
+    console.log(weatherData);
+    return responseJSON;
 }
 
-export { getWeather, processResponse };
+export { getWeather, processResponse,weatherData };
